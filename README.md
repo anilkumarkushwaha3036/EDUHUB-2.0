@@ -1,4 +1,4 @@
-# 🚀 EduHub
+# 🚀 EDUHUB 2.0
 
 <div align="center">
   <img src="frontend/public/favicon.ico" alt="EduHub Logo" width="80" height="80" />
@@ -7,7 +7,7 @@
 
 ---
 
-## 📖 About EduHub
+## 📖 About EduHub 2.0
 
 EduHub solves the common problem students face: wasting hours trying to find quality, free learning materials. By providing a **curated, structured, and categorized resource hub**, EduHub eliminates the overwhelm of infinite YouTube tutorials, scattered blogs, and confusing documentation. 
 
