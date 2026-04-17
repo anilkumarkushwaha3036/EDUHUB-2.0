@@ -100,8 +100,8 @@ PORT=5000
 MONGODB_URI=mongodb://127.0.0.1:27017/eduhub
 JWT_SECRET=super_secret_jwt_key
 JWT_EXPIRES_IN=7d
-ADMIN_SEED_EMAIL=admin@eduhub.com
-ADMIN_SEED_PASSWORD=Admin@123
+ADMIN_SEED_EMAIL=xxxx
+ADMIN_SEED_PASSWORD=xxxx
 ```
 
 Seed the database with initial curated resources:
@@ -132,14 +132,6 @@ Start the Next.js development server:
 npm run dev
 # The frontend will run on http://localhost:3000
 ```
-
----
-
-## 🔐 Default Admin Credentials
-If you ran the `npm run seed` command, you can access the Admin CMS at `http://localhost:3000/admin/login` using:
-
-- **Email:** `admin@eduhub.com`
-- **Password:** `Admin@123`
 
 ---
 
