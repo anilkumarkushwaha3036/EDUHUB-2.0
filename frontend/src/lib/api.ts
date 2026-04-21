@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Resource, ResourceFilters, Skill, ResourceType, ApiListResponse, ApiSingleResponse } from '@/types';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_BASE = '/api';
 
 const api = axios.create({ baseURL: API_BASE });
 

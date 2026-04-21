@@ -1,0 +1,13 @@
+{
+  "name": "eduhub-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "cd frontend && npm install",
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm run start",
+    "docker:build": "docker build -t anilkumarkushwah3036/eduhub:latest .",
+    "docker:push": "docker push anilkumarkushwah3036/eduhub:latest"
+  }
+}

@@ -30,8 +30,8 @@ export interface Resource {
   link: string;
   description: string;
   thumbnail?: string;
-  skillId: Skill;
-  typeId: ResourceType;
+  skillId: Skill | string;
+  typeId: ResourceType | string;
   level: ResourceLevel;
   tags: string[];
   isApproved: boolean;
