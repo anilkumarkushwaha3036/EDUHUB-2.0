@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+
 import SearchPageClient from "./SearchPageClient";
 import { Suspense } from "react";
 
@@ -18,7 +18,7 @@ export default function SearchPage() {
           <SearchPageClient />
         </Suspense>
       </main>
-      <Footer />
+
     </>
   );
 }

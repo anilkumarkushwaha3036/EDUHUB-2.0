@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Resource, ResourceFilters, Skill, ResourceType, ApiListResponse, ApiSingleResponse } from '@/types';
+import { Resource, ResourceFilters, Skill, ResourceType, ApiListResponse, ApiSingleResponse, AITool, Blog } from '@/types';
 
 const API_BASE = '/api';
 
@@ -99,5 +99,47 @@ export const adminUpdateSkill = async (id: string, payload: Partial<Skill>) => {
 
 export const adminDeleteSkill = async (id: string) => {
   const { data } = await api.delete(`/admin/skills/${id}`);
+  return data;
+};
+
+// ═══════════ AI Tools ═══════════
+export const fetchAITools = async (): Promise<AITool[]> => {
+  const { data } = await api.get<ApiListResponse<AITool>>('/ai-tools');
+  return data.data;
+};
+
+export const adminCreateAITool = async (payload: Partial<AITool>) => {
+  const { data } = await api.post('/admin/ai-tools', payload);
+  return data.data;
+};
+
+export const adminUpdateAITool = async (id: string, payload: Partial<AITool>) => {
+  const { data } = await api.put(`/admin/ai-tools/${id}`, payload);
+  return data.data;
+};
+
+export const adminDeleteAITool = async (id: string) => {
+  const { data } = await api.delete(`/admin/ai-tools/${id}`);
+  return data;
+};
+
+// ═══════════ Blogs ═══════════
+export const fetchBlogs = async (): Promise<Blog[]> => {
+  const { data } = await api.get<ApiListResponse<Blog>>('/blogs');
+  return data.data;
+};
+
+export const adminCreateBlog = async (payload: Partial<Blog>) => {
+  const { data } = await api.post('/admin/blogs', payload);
+  return data.data;
+};
+
+export const adminUpdateBlog = async (id: string, payload: Partial<Blog>) => {
+  const { data } = await api.put(`/admin/blogs/${id}`, payload);
+  return data.data;
+};
+
+export const adminDeleteBlog = async (id: string) => {
+  const { data } = await api.delete(`/admin/blogs/${id}`);
   return data;
 };

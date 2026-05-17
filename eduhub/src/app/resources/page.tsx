@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+
 import ResourcesPageClient from "./ResourcesPageClient";
 import { Suspense } from "react";
 
@@ -19,7 +19,7 @@ export default function ResourcesPage() {
           <ResourcesPageClient />
         </Suspense>
       </main>
-      <Footer />
+
     </>
   );
 }

@@ -7,17 +7,10 @@ import { Search, BookOpen, Menu, X, Zap } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
   const router = useRouter();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,15 +25,17 @@ export default function Navbar() {
     { href: "/", label: "Home" },
     { href: "/skills", label: "Skills" },
     { href: "/resources", label: "Resources" },
+    { href: "/ai-tools", label: "AI Tools" },
+    { href: "/blogs", label: "Blogs" },
   ];
 
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
+    if (href === "/") return false;
     return pathname.startsWith(href);
   };
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <nav className="navbar">
       <div
         className="container nav-island"
       >
@@ -55,19 +50,6 @@ export default function Navbar() {
             flexShrink: 0,
           }}
         >
-          <div
-            style={{
-              width: "34px",
-              height: "34px",
-              borderRadius: "0.25rem",
-              background: "var(--gradient-blue)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Zap size={18} color="white" fill="white" />
-          </div>
           <span
             style={{
               fontWeight: 800,
@@ -120,7 +102,7 @@ export default function Navbar() {
           {/* Search bar (desktop) */}
           <form
             onSubmit={handleSearch}
-            style={{ position: "relative" }}
+            style={{ position: "relative", zIndex: 1 }}
           >
             <input
               type="text"
@@ -130,19 +112,19 @@ export default function Navbar() {
               className="input"
               style={{
                 width: "240px",
-                paddingLeft: "2.5rem",
+                paddingLeft: "1.0rem",
+                paddingRight: "2.5rem",
                 height: "38px",
                 fontSize: "0.875rem",
                 borderTopRightRadius: 0,
                 borderBottomRightRadius: 0,
-                borderRight: "1px solid var(--border-default)",
               }}
             />
             <Search
               size={15}
               style={{
                 position: "absolute",
-                left: "0.875rem",
+                right: "0.875rem",
                 top: "50%",
                 transform: "translateY(-50%)",
                 color: "var(--text-muted)",
@@ -269,45 +251,6 @@ export default function Navbar() {
         </div>
       )}
 
-      <style jsx>{`
-        .navbar {
-          padding: 1rem 0;
-          transition: all 0.3s ease;
-        }
-        .navbar.scrolled {
-          padding: 0.5rem 0;
-        }
-        .nav-island {
-          background: var(--navbar-bg);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          border: 1px solid var(--border-default);
-          border-radius: 0.25rem;
-          height: 60px;
-          display: flex;
-          align-items: center;
-          padding: 0 1.25rem;
-          box-shadow: 0 4px 20px -5px rgba(0,0,0,0.05);
-          transition: all 0.3s ease;
-        }
-        .navbar.scrolled .nav-island {
-           box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
-           border-color: var(--border-strong);
-        }
-        @media (max-width: 768px) {
-          .desktop-nav {
-            display: none !important;
-          }
-           .nav-island {
-            margin: 0 0.5rem;
-          }
-        }
-        @media (min-width: 769px) {
-          .mobile-nav {
-            display: none !important;
-          }
-        }
-      `}</style>
     </nav>
   );
 }

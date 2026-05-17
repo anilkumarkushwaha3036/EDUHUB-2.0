@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+
 import { ArrowRight } from "lucide-react";
 import SkillCard from "@/components/ui/SkillCard";
 import LoadingSkeleton from "@/components/ui/LoadingSkeleton";
@@ -20,13 +20,10 @@ export default function FeaturedSkillsSection() {
   }, []);
 
   return (
-    <section className="section" style={{ paddingTop: "2rem" }}>
+    <section className="section" style={{ paddingTop: "0.5rem", paddingBottom: "2.5rem" }}>
       <div className="container">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <div
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -61,7 +58,7 @@ export default function FeaturedSkillsSection() {
               View all skills <ArrowRight size={15} />
             </button>
           </Link>
-        </motion.div>
+        </div>
 
         {/* Grid */}
         {loading ? (

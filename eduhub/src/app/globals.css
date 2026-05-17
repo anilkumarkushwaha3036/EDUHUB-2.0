@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 /* ══════════════════════════════════════════
    EduHub Design System — Premium Blue Theme (Light default)
@@ -13,11 +17,11 @@
   --bg-elevated: #ffffff;
 
   /* Blue Accents */
-  --accent-primary: #1e40af; /* Deeper professional blue */
-  --accent-secondary: #3b82f6;
-  --accent-purple: #6d28d9;
-  --accent-glow: rgba(30, 64, 175, 0.05);
-  --accent-glow-strong: rgba(30, 64, 175, 0.1);
+  --accent-primary: #2563eb; /* Vibrant modern blue */
+  --accent-secondary: #60a5fa;
+  --accent-purple: #8b5cf6;
+  --accent-glow: rgba(37, 99, 235, 0.08);
+  --accent-glow-strong: rgba(37, 99, 235, 0.15);
 
   /* Text */
   --text-primary: #0f172a;
@@ -36,14 +40,46 @@
     #fcfdfe 100%
   );
   --gradient-card: linear-gradient(145deg, #ffffff, #fafafa);
-  --gradient-blue: linear-gradient(135deg, #1e40af, #3b82f6);
-  --gradient-purple: linear-gradient(135deg, #6d28d9, #1e40af);
+  --gradient-blue: linear-gradient(135deg, #2563eb, #60a5fa);
+  --gradient-purple: linear-gradient(135deg, #8b5cf6, #2563eb);
 
   --glass-bg: rgba(255, 255, 255, 0.8);
   --glass-strong-bg: rgba(255, 255, 255, 0.95);
   --input-bg: #ffffff;
   --navbar-bg: rgba(255, 255, 255, 0.8);
   --mobile-menu-bg: rgba(255, 255, 255, 0.98);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
@@ -97,6 +133,37 @@
   --input-bg: rgba(13, 21, 38, 0.8);
   --navbar-bg: rgba(5, 11, 24, 0.95);
   --mobile-menu-bg: rgba(5, 11, 24, 0.98);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
 
 /* ══════════ Reset & Base ══════════ */
@@ -185,40 +252,59 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--gradient-blue);
-  color: white;
+  background: rgba(37, 99, 235, 0.08); /* Feather-light 8% opacity blue tint */
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  color: #2563eb; /* Crisp, high-contrast readable blue text */
   font-weight: 600;
-  padding: 0.625rem 1.5rem;
-  border-radius: 0.25rem;
-  border: none;
+  padding: 0.625rem 1.625rem;
+  border-radius: 0.5rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.9rem;
-  letter-spacing: 0.01em;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.02);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 24px var(--accent-glow-strong);
-  transform: translateY(-1px);
+  background: rgba(37, 99, 235, 0.14);
+  border-color: rgba(37, 99, 235, 0.3);
+  color: #1d4ed8;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.08);
+  transform: translateY(-1.5px);
+}
+
+/* Dark mode premium support */
+.dark .btn-primary {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.22);
+  color: #60a5fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dark .btn-primary:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: #93c5fd;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.12);
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: transparent;
+  background: var(--bg-card);
   color: var(--text-primary);
   font-weight: 500;
   padding: 0.625rem 1.5rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   border: 1px solid var(--border-default);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
 }
 
 .btn-secondary:hover {
-  background: var(--accent-glow);
+  background: var(--bg-primary);
   border-color: var(--border-strong);
 }
 
@@ -321,27 +407,7 @@ h4 {
   box-shadow: 0 0 40px rgba(6, 182, 212, 0.2);
 }
 
-/* ══════════ Loading Skeleton ══════════ */
-.skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--bg-card) 25%,
-    var(--bg-card-hover) 50%,
-    var(--bg-card) 75%
-  );
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s infinite;
-  border-radius: 0.375rem;
-}
-
-@keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
+/* Custom skeleton removed since react-loading-skeleton is now used */
 
 /* ══════════ Filter Pill ══════════ */
 .filter-pill {
@@ -406,13 +472,31 @@ h4 {
   left: 0;
   right: 0;
   z-index: 100;
-  transition: all 0.3s ease;
+  padding: 0.75rem 0;
 }
-
-.navbar.scrolled {
+.nav-island {
   background: var(--navbar-bg);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-subtle);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 0.25rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 1.25rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .nav-island {
+    margin: 0 0.5rem;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-nav {
+    display: none !important;
+  }
 }
 
 /* ══════════ Type-specific colors (Removed for minimal theme) ══════════ */
@@ -430,5 +514,175 @@ h4 {
   }
   .section {
     padding: 3rem 0;
+  }
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ══════════ Premium UI & Cards Overhaul ══════════ */
+
+.skill-card-container {
+  display: block;
+  text-decoration: none;
+}
+
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 160px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px var(--border-subtle);
+}
+
+/* Elegant left accent border using custom skill properties */
+.skill-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--skill-accent, var(--accent-secondary));
+  border-radius: 0.75rem 0 0 0.75rem;
+  transition: all 0.25s ease;
+}
+
+.skill-card:hover {
+  border-color: var(--skill-accent, var(--accent-primary));
+  box-shadow: 0 16px 36px -8px var(--accent-glow-strong);
+  transform: translateY(-5px);
+}
+
+.skill-card:hover::before {
+  width: 7px;
+}
+
+.skill-card.compact {
+  padding: 1.25rem;
+  min-height: auto;
+}
+
+/* Resource Card Premium CSS */
+.resource-card-link {
+  text-decoration: none;
+  display: block;
+}
+
+.resource-card {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px var(--border-subtle);
+}
+
+.resource-card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 16px 36px -8px var(--accent-glow-strong);
+  transform: translateY(-5px);
+}
+
+.resource-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* Grid Gap Improvements */
+.grid-skills, .grid-resources {
+  gap: 1.5rem !important;
+}
+
+/* Hero Bounding Red Box Polishing (Dynamic premium focus box instead of flat debug box) */
+.hero-bounded-box {
+  border: 2.5px solid transparent;
+  background-image: linear-gradient(var(--bg-primary), var(--bg-primary)), linear-gradient(135deg, #ef4444 0%, #ec4899 50%, #3b82f6 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 1.25rem;
+  display: inline-block;
+  padding: 1.5rem 2.5rem;
+  box-shadow: 0 20px 50px -15px rgba(239, 68, 68, 0.08);
+  transition: all 0.3s ease;
+}
+
+.hero-bounded-box:hover {
+  box-shadow: 0 25px 60px -10px rgba(239, 68, 68, 0.15);
+  transform: scale(1.01);
+}
+
+@media (max-width: 640px) {
+  .hero-bounded-box {
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
   }
 }

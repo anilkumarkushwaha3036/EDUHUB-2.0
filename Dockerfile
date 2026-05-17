@@ -4,19 +4,17 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY frontend/package.json frontend/package-lock.json* ./
-RUN npm config set fetch-retry-mintimeout 20000 && npm config set fetch-retry-maxtimeout 120000 && npm install
+COPY eduhub/package.json eduhub/package-lock.json* ./
+RUN npm config set fetch-retry-mintimeout 20000 && npm config set fetch-retry-maxtimeout 120000 && npm install --legacy-peer-deps
 
 # Stage 2: Rebuild the source code only when needed
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY frontend/ ./
+COPY eduhub/ ./
 
-# If you have a .env.local file in the frontend folder, it will be copied here.
-# Note: Next.js reads .env files during the build process to bake in PUBLIC variables.
-# For server-side variables like MONGODB_URI, they can also be provided at runtime.
-COPY frontend/.env.local* ./.env.local
+# Copy all environment files (.env, .env.local, etc.) into build directory
+COPY eduhub/.env* ./
 
 RUN npm run build
 
@@ -32,6 +30,7 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/public ./app/public
 
 # Set the correct permission for prerender cache
 RUN mkdir .next
@@ -41,6 +40,12 @@ RUN chown nextjs:nodejs .next
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./app/.next/static
+
+# Bake all copied env files directly into the production runner directory
+# (Copied to both root and app/ to ensure absolute support for both server.js and seed scripts)
+COPY --from=builder --chown=nextjs:nodejs /app/.env* ./
+COPY --from=builder --chown=nextjs:nodejs /app/.env* ./app/
 
 USER nextjs
 
@@ -50,6 +55,6 @@ ENV PORT=3000
 # set hostname to localhost
 ENV HOSTNAME="0.0.0.0"
 
-# server.js is created by next build from the standalone output
+# server.js is created by next build from the standalone output inside the app subdirectory
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD ["node", "server.js"]
+CMD ["node", "app/server.js"]

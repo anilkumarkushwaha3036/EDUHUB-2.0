@@ -1,5 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+
 import SkillDetailClient from "./SkillDetailClient";
 
 interface Props {
@@ -14,7 +14,7 @@ export default async function SkillDetailPage({ params }: Props) {
       <main style={{ paddingTop: "5rem" }}>
         <SkillDetailClient slug={slug} />
       </main>
-      <Footer />
+
     </>
   );
 }

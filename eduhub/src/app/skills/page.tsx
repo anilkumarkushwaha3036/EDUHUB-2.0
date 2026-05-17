@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+
 import SkillsPageClient from "./SkillsPageClient";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function SkillsPage() {
       <main style={{ paddingTop: "5rem" }}>
         <SkillsPageClient />
       </main>
-      <Footer />
+
     </>
   );
 }

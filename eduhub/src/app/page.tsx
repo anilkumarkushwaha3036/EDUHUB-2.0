@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+
 import HeroSection from "@/components/home/HeroSection";
 import FeaturedSkillsSection from "@/components/home/FeaturedSkillsSection";
 import FeaturedResourcesSection from "@/components/home/FeaturedResourcesSection";
@@ -20,7 +20,7 @@ export default function HomePage() {
         <FeaturedSkillsSection />
         <FeaturedResourcesSection />
       </main>
-      <Footer />
+
     </>
   );
 }

@@ -3,7 +3,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Layers } from "lucide-react";
 import ResourceCard from "@/components/ui/ResourceCard";
 import FilterBar from "@/components/ui/FilterBar";
 import LoadingSkeleton from "@/components/ui/LoadingSkeleton";
@@ -76,36 +75,7 @@ export default function ResourcesPageClient() {
   return (
     <section className="section">
       <div className="container">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{ marginBottom: "2rem" }}
-        >
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              marginBottom: "0.75rem",
-              background: "var(--border-subtle)",
-              border: "1px solid rgba(59,130,246,0.25)",
-              padding: "0.375rem 1rem",
-              borderRadius: "0.25rem",
-            }}
-          >
-            <Layers size={14} color="#60a5fa" />
-            <span
-              style={{ color: "#60a5fa", fontSize: "0.85rem", fontWeight: 600 }}
-            >
-              {total} Resources
-            </span>
-          </div>
-          <h1 className="section-title">
-            All <span className="gradient-text">Resources</span>
-          </h1>
-        </motion.div>
+
 
         <div
           style={{

@@ -86,7 +86,7 @@ npm run dev
 # → http://localhost:3000
 ```
 
-**Create `frontend/.env.local`:**
+**Create `eduhub/.env.local`:**
 ```env
 MONGODB_URI=your_mongodb_atlas_connection_string
 JWT_SECRET=your_jwt_secret

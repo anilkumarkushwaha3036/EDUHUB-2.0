@@ -77,3 +77,25 @@ export interface AuthState {
   admin: Admin | null;
   isAuthenticated: boolean;
 }
+
+export interface AITool {
+  _id: string;
+  name: string;
+  description: string;
+  logo: string;
+  link: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Blog {
+  _id: string;
+  title: string;
+  coverImage: string;
+  details: string;
+  link: string;
+  author?: string;
+  date?: string;
+  createdAt: string;
+  updatedAt: string;
+}

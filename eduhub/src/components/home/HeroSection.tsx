@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { motion } from "framer-motion";
+
 import { Search, Sparkles, ArrowRight, Zap } from "lucide-react";
 
 const floatingBadges = [
@@ -31,8 +31,8 @@ export default function HeroSection() {
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
-        paddingTop: "8rem",
-        paddingBottom: "4rem",
+        paddingTop: "7rem",
+        paddingBottom: "1.5rem",
       }}
     >
       {/* Background */}
@@ -51,18 +51,14 @@ export default function HeroSection() {
           position: "relative",
           zIndex: 1,
           textAlign: "center",
-          paddingBottom: "2rem",
+          paddingBottom: "1rem",
         }}
       >
         {/* Eyebrow tag */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <div
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.5rem",
+            display: "flex",
+            justifyContent: "center",
             marginBottom: "1.75rem",
           }}
         >
@@ -83,52 +79,46 @@ export default function HeroSection() {
           >
             <Sparkles size={14} color="var(--accent-primary)" /> Free Resources · Curated & Structured
           </span>
-        </motion.div>
+        </div>
 
         {/* Main Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+        <h1
+          className="hero-bounded-box"
           style={{
-            fontSize: "clamp(2.75rem, 6vw, 5rem)",
+            fontSize: "clamp(2.25rem, 5vw, 4.5rem)",
             fontWeight: 900,
             letterSpacing: "-0.04em",
-            lineHeight: 1.05,
+            lineHeight: 1.1,
             color: "var(--text-primary)",
-            marginBottom: "1.25rem",
+            marginBottom: "1rem",
           }}
         >
-          Stop Searching.
+          Stop Searching,
           <br />
           <span className="gradient-text">Start Learning.</span>
-        </motion.h1>
+        </h1>
 
         {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
+        <p
           style={{
-            fontSize: "clamp(1rem, 2vw, 1.25rem)",
-            color: "var(--text-muted)",
-            maxWidth: "600px",
-            margin: "0 auto 2.5rem",
-            lineHeight: 1.7,
+            fontFamily: '"Outfit", sans-serif',
+            fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)",
+            color: "var(--text-secondary)",
+            maxWidth: "800px",
+            margin: "0 auto 2.25rem",
+            lineHeight: 1.6,
+            letterSpacing: "-0.01em",
           }}
         >
           The centralized hub for the{" "}
-          <strong style={{ color: "var(--text-secondary)" }}>
+          <strong style={{ color: "var(--accent-primary)", fontWeight: 600 }}>
             best free learning resources
           </strong>{" "}
           across all tech domains. Curated, structured, and beginner-friendly.
-        </motion.p>
+        </p>
 
         {/* Search Bar */}
-        <motion.form
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+        <form
           onSubmit={handleSearch}
           style={{
             display: "flex",
@@ -138,17 +128,6 @@ export default function HeroSection() {
           }}
         >
           <div style={{ flex: 1, position: "relative" }}>
-            <Search
-              size={18}
-              style={{
-                position: "absolute",
-                left: "1rem",
-                top: "50%",
-                transform: "translateY(-50%)",
-                color: "var(--text-muted)",
-                pointerEvents: "none",
-              }}
-            />
             <input
               type="text"
               value={query}
@@ -156,43 +135,53 @@ export default function HeroSection() {
               placeholder="Search React, Python, Neural Networks..."
               className="input"
               style={{
-                paddingLeft: "2.75rem",
+                paddingLeft: "1.25rem",
+                paddingRight: "2.75rem",
                 paddingTop: "0.875rem",
                 paddingBottom: "0.875rem",
                 fontSize: "1rem",
               }}
               id="hero-search"
             />
+            <Search
+              size={18}
+              style={{
+                position: "absolute",
+                right: "1rem",
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "var(--text-muted)",
+                pointerEvents: "none",
+              }}
+            />
           </div>
           <button
             type="submit"
-            className="btn-primary"
+            className="btn-secondary"
             style={{
               paddingLeft: "1.75rem",
               paddingRight: "1.75rem",
               whiteSpace: "nowrap",
+              borderRadius: "0.25rem",
             }}
           >
-            <Zap size={16} /> Search
+            Search
           </button>
-        </motion.form>
+        </form>
 
         {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+        <div
           style={{
             display: "flex",
             gap: "0.875rem",
             justifyContent: "center",
             flexWrap: "wrap",
-            marginBottom: "4rem",
+            marginBottom: "2.5rem",
           }}
         >
           <a
             href="/skills"
-            className="btn-primary"
+            className="btn-secondary"
             style={{ textDecoration: "none" }}
           >
             Browse Skills <ArrowRight size={16} />
@@ -204,13 +193,10 @@ export default function HeroSection() {
           >
             All Resources
           </a>
-        </motion.div>
+        </div>
 
         {/* Floating Skill Badges */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+        <div
           style={{
             display: "flex",
             gap: "0.625rem",
@@ -219,11 +205,8 @@ export default function HeroSection() {
           }}
         >
           {floatingBadges.map((badge) => (
-            <motion.span
+            <span
               key={badge.text}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.8 + badge.delay }}
               style={{
                 padding: "0.375rem 0.875rem",
                 borderRadius: "0.25rem",
@@ -236,9 +219,9 @@ export default function HeroSection() {
               }}
             >
               {badge.text}
-            </motion.span>
+            </span>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

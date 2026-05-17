@@ -22,7 +22,14 @@ async function connectDB(): Promise<typeof mongoose> {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, { bufferCommands: false });
+    console.log('⚡ [EduHub Database] Connecting to MongoDB Atlas Cloud...');
+    cached.promise = mongoose.connect(MONGODB_URI, { bufferCommands: false }).then((m) => {
+      console.log('🟢 [EduHub Database] MongoDB Atlas Cloud Database connected successfully!');
+      return m;
+    }).catch((err) => {
+      console.error('🔴 [EduHub Database] Failed to connect to MongoDB Atlas Cloud:', err.message);
+      throw err;
+    });
   }
 
   cached.conn = await cached.promise;

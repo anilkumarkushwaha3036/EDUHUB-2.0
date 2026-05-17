@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+
 import { ArrowRight } from "lucide-react";
 import ResourceCard from "@/components/ui/ResourceCard";
 import LoadingSkeleton from "@/components/ui/LoadingSkeleton";
@@ -23,16 +23,15 @@ export default function FeaturedResourcesSection() {
     <section
       className="section"
       style={{
+        paddingTop: "2.5rem",
+        paddingBottom: "3rem",
         background: "rgba(59,130,246,0.02)",
         borderTop: "1px solid rgba(59,130,246,0.06)",
         borderBottom: "1px solid rgba(59,130,246,0.06)",
       }}
     >
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <div
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -73,7 +72,7 @@ export default function FeaturedResourcesSection() {
               View all <ArrowRight size={15} />
             </button>
           </Link>
-        </motion.div>
+        </div>
 
         {loading ? (
           <LoadingSkeleton count={6} type="resource" />

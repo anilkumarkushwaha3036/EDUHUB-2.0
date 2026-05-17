@@ -79,21 +79,6 @@ export default function AdminLoginClient() {
       >
         {/* Logo */}
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-          <div
-            style={{
-              width: "56px",
-              height: "56px",
-              borderRadius: "0.375rem",
-              background: "linear-gradient(135deg, #2563eb, #06b6d4)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "0 auto 1rem",
-              boxShadow: "0 0 30px rgba(59,130,246,0.3)",
-            }}
-          >
-            <Zap size={28} color="white" fill="white" />
-          </div>
           <h1
             style={{
               fontSize: "1.5rem",
@@ -145,7 +130,7 @@ export default function AdminLoginClient() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@eduhub.com"
+              placeholder="email@example.com"
               className="input"
               style={{ paddingLeft: "2.5rem" }}
               required
@@ -191,17 +176,6 @@ export default function AdminLoginClient() {
             <LogIn size={16} /> {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
-
-        <p
-          style={{
-            textAlign: "center",
-            color: "var(--text-muted)",
-            fontSize: "0.8rem",
-            marginTop: "1.5rem",
-          }}
-        >
-          Default: admin@eduhub.com / Admin@123
-        </p>
       </motion.div>
     </div>
   );
